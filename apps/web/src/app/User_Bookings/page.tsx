@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from 'react';
 import { useAuthRole } from '../utils/hook/useAuthRole';
-import SideNavbar from '@/app/User_Navbar/page';
+import SideNavbar from '@/components/User_Navbar/page';
 import api from '@/lib/api/axios';
 
 interface Booking {

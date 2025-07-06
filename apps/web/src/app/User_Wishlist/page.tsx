@@ -1,6 +1,6 @@
 'use client';
 
-import SideNavbar from '@/app/User_Navbar/page';
+import SideNavbar from '@/components/User_Navbar/page';
 import { Heart } from 'lucide-react';
 import { useEffect, useState } from 'react';
 import { useAuthRole } from '../utils/hook/useAuthRole';

@@ -1,5 +1,5 @@
 'use client';
-import SideNavbar from '@/app/User_Navbar/page';
+import SideNavbar from '@/components/User_Navbar/page';
 
 export default function ReviewsPage() {
   const reviews = [

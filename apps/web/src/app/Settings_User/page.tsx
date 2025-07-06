@@ -12,7 +12,7 @@ import { FaEye, FaEyeSlash } from 'react-icons/fa';
 import { toast } from 'sonner';
 import { User } from 'lucide-react';
 import Image from 'next/image';
-import SideNavbar from '@/app/User_Navbar/page';
+import SideNavbar from '@/components/User_Navbar/page';
 
 export default function UserSettingsPage() {
   const authorized = useAuthRole(['USER']);
