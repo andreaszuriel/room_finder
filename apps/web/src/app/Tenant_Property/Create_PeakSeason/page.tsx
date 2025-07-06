@@ -2,7 +2,7 @@
 
 import { useState } from 'react';
 import { useRouter, useSearchParams } from 'next/navigation';
-import SideNavbar from '@/app/Tenant_Navbar/page'; // pastikan path ini benar
+import SideNavbar from '@/components/Tenant_Navbar/page'; // pastikan path ini benar
 
 export default function CreatePeakSeasonPage() {
   const router = useRouter();

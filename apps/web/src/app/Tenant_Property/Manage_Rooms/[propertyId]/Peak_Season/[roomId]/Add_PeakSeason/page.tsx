@@ -4,7 +4,7 @@ import { useState, useEffect } from 'react';
 import { useRouter, useParams } from 'next/navigation';
 import { getRoomById, setPeakSeasonRate } from '@/lib/api/axios';
 import { useAuthRole } from '@/app/utils/hook/useAuthRole';
-import TenantSidebar from '@/app/Tenant_Navbar/page';
+import TenantSidebar from '@/components/Tenant_Navbar/page';
 import { toast } from 'sonner';
 import { AxiosError } from 'axios';
 

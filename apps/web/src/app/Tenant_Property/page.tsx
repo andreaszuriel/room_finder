@@ -3,7 +3,7 @@
 import React from 'react';
 import Link from 'next/link';
 import { useState, useEffect } from 'react';
-import TenantSidebar from '../../components/Tenant_Navbar/page';
+import TenantSidebar from '@/components/Tenant_Navbar/page';
 import TenantPropertyTable from '@/components/molecules/TenantPropertyTable';
 import { getTenantProperties } from '@/lib/api/axios';
 import { useAuthRole } from '../utils/hook/useAuthRole';

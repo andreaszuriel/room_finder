@@ -1,7 +1,7 @@
 'use client';
 
 import React from 'react';
-import TenantSidebar from '../../components/Tenant_Navbar/page'
+import TenantSidebar from '@/components/Tenant_Navbar/page';
 ;
 
 export default function TenantReviewsPage() {

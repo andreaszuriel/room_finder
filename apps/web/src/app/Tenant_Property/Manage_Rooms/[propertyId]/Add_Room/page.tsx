@@ -6,7 +6,7 @@ import { createRoom, getPropertyById } from '@/lib/api/axios';
 import { useAuthRole } from '@/app/utils/hook/useAuthRole';
 import { AxiosError } from 'axios';
 import { toast } from 'sonner';
-import TenantSidebar from '@/app/Tenant_Navbar/page';
+import TenantSidebar from '@/components/Tenant_Navbar/page';
 
 export default function TenantAddRoomPage() {
   const authorized = useAuthRole(['TENANT']);

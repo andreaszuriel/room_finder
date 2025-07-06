@@ -3,7 +3,7 @@
 import { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 import { useAuthRole } from '@/app/utils/hook/useAuthRole';
-import TenantSidebar from '@/app/Tenant_Navbar/page';
+import TenantSidebar from '@/components/Tenant_Navbar/page';
 import {
   getAllCities,
   getAllPropertyCategories,

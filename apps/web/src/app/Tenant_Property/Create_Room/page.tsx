@@ -2,7 +2,7 @@
 
 import { useState } from 'react';
 import { useRouter, useSearchParams } from 'next/navigation';
-import TenantSidebar from '../../../components/Tenant_Navbar/page';
+import TenantSidebar from '@/components/Tenant_Navbar/page';
 
 export default function TenantAddRoomPage() {
   const router = useRouter();

@@ -2,7 +2,7 @@
 
 import { useParams } from 'next/navigation';
 import RoomAvailabilityTable from '../AvailabilityTable';
-import TenantSidebar from '../../../../../../../components/Tenant_Navbar/page';
+import TenantSidebar from '@/components/Tenant_Navbar/page';
 import Link from 'next/link';
 import { useAuthRole } from '@/app/utils/hook/useAuthRole';
 

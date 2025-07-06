@@ -2,7 +2,7 @@
 import { useParams, useRouter } from 'next/navigation';
 import { setRoomAvailability } from '@/lib/api/axios';
 import { useState } from 'react';
-import TenantSidebar from '@/app/Tenant_Navbar/page';
+import TenantSidebar from '@/components/Tenant_Navbar/page';
 import { AxiosError } from 'axios';
 
 export default function SetAvailabilityPage() {
