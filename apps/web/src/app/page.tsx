@@ -4,7 +4,7 @@ import { useEffect, useState } from 'react';
 import { getAllCities, getCatalogProperties } from '@/lib/api/axios';
 import PropertyCard from '@/components/PropertyCard';
 import SearchForm from '@/components/SearchForm';
-import Navbar from '../components/Navbar';
+import Navbar from '../components/Navbar/Navbar';
 import Footer from '@/components/Footer';
 
 import 'react-responsive-carousel/lib/styles/carousel.min.css';
