@@ -1,6 +1,6 @@
 'use client';
 
-import Navbar from '@/components/navbar';
+import Navbar from '@/components/Navbar';
 import { useState, useEffect } from 'react';
 import { useParams, useRouter, useSearchParams } from 'next/navigation';
 import { toast } from 'sonner';
