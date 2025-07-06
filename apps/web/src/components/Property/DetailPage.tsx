@@ -6,15 +6,16 @@ import { useState, useRef, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 
 interface Property {
-  id: string;
+  id: number;
   name: string;
-  location: string;
-  price: number;
-  rating: number;
-  description: string;
-  images: string[];
-  amenities: string[];
-  mapEmbedUrl?: string;
+  description?: string;
+  image?: string;
+  images?: string[];
+  location?: string;
+  city?: { name: string };
+  category?: { name: string };
+  price?: number;
+  deletedAt?: string | null;
 }
 
 interface Review {
@@ -25,18 +26,16 @@ interface Review {
   avatarUrl?: string;
 }
 
-export default function PropertyDetail({ property }: { property: Property }) {
+export default function PropertyDetailClient({ property }: { property: Property }) {
   const router = useRouter();
-
-  /* ------------ state ------------ */
-  const [mainImage, setMainImage] = useState(property.images[0]);
+  const mainImg = property.images?.[0] || property.image || '/placeholder.jpg';
+  const [mainImage, setMainImage] = useState(mainImg);
   const [counts, setCounts] = useState({ Adults: 0, Children: 0, Pets: 0 });
   const [openDropdown, setOpenDropdown] = useState(false);
   const [checkIn, setCheckIn] = useState('');
   const [checkOut, setCheckOut] = useState('');
   const dropdownRef = useRef<HTMLDivElement>(null);
 
-  /* ------------ dummy reviews ------------ */
   const reviews: Review[] = [
     {
       id: '1',
@@ -61,7 +60,6 @@ export default function PropertyDetail({ property }: { property: Property }) {
     },
   ];
 
-  /* ------------ guest counter helpers ------------ */
   const handleIncrement = (key: keyof typeof counts) =>
     setCounts((prev) => ({ ...prev, [key]: prev[key] + 1 }));
 
@@ -73,7 +71,6 @@ export default function PropertyDetail({ property }: { property: Property }) {
   const totalGuests = counts.Adults + counts.Children;
   const totalPets = counts.Pets;
 
-  /* ------------ close dropdown on outside click ------------ */
   useEffect(() => {
     const handleClickOutside = (e: MouseEvent) => {
       if (dropdownRef.current && !dropdownRef.current.contains(e.target as Node)) {
@@ -84,7 +81,6 @@ export default function PropertyDetail({ property }: { property: Property }) {
     return () => document.removeEventListener('mousedown', handleClickOutside);
   }, [openDropdown]);
 
-  /* ------------ navigate to reservation page ------------ */
   const handleReservation = () => {
     if (!checkIn || !checkOut || totalGuests === 0) {
       alert('Please select check-in / check-out dates and at least one guest.');
@@ -92,35 +88,30 @@ export default function PropertyDetail({ property }: { property: Property }) {
     }
 
     const query = new URLSearchParams({
-      id: property.id,
+      id: property.id.toString(),
       name: property.name,
-      loc: property.location,
+      loc: property.location || property.city?.name || 'Unknown',
       in: checkIn,
       out: checkOut,
       guests: String(totalGuests),
-      price: String(property.price),
-      propertyId: property.id, // nice to have for callback
+      price: String(property.price || 0),
+      propertyId: property.id.toString(),
     });
 
     router.push(`/Reservation?${query.toString()}`);
   };
 
-  /* ------------ render ------------ */
   return (
     <>
       <Navbar />
-
       <div className="max-w-7xl mx-auto px-4 py-8 grid grid-cols-1 lg:grid-cols-3 gap-8">
-        {/* ========= Left content ========= */}
         <div className="lg:col-span-2">
-          {/* gallery */}
           <div className="grid grid-cols-1 gap-4">
             <div className="relative w-full h-72 md:h-96 rounded-xl overflow-hidden">
               <Image src={mainImage} alt="Main" fill className="object-cover" />
             </div>
-
             <div className="grid grid-cols-4 gap-2">
-              {property.images.map((img, idx) => (
+              {(property.images?.length ? property.images : [property.image || '/placeholder.jpg']).map((img, idx) => (
                 <div
                   key={idx}
                   onClick={() => setMainImage(img)}
@@ -133,51 +124,34 @@ export default function PropertyDetail({ property }: { property: Property }) {
           </div>
 
           <h1 className="text-2xl font-bold mt-6">{property.name}</h1>
-          <p className="text-gray-600 mt-1">📍 {property.location}</p>
+          <p className="text-gray-600 mt-1">📍 {property.location || property.city?.name || 'Unknown Location'}</p>
+
           <p className="mt-2 text-yellow-500">
-            {'★'.repeat(Math.floor(property.rating))}
-            <span className="text-sm text-gray-500 ml-2">({property.rating})</span>
+            {'★'.repeat(4)}
+            <span className="text-sm text-gray-500 ml-2">(4.0)</span>
           </p>
 
-          {/* description */}
           <section className="mt-6">
             <h2 className="text-xl font-semibold mb-2">Description</h2>
-            <p className="text-gray-700">{property.description}</p>
+            <p className="text-gray-700">{property.description || 'No description provided.'}</p>
           </section>
 
-          {/* amenities */}
           <section className="mt-6">
             <h2 className="text-xl font-semibold mb-2">Amenities</h2>
             <div className="grid grid-cols-2 md:grid-cols-3 gap-2 text-gray-700">
-              {property.amenities.map((item, i) => (
-                <div key={i} className="flex items-center gap-2">
-                  ✅ {item}
-                </div>
+              {['WiFi', 'Parking', 'Air Conditioning'].map((item, i) => (
+                <div key={i} className="flex items-center gap-2">✅ {item}</div>
               ))}
             </div>
           </section>
 
-          {/* map */}
           <section className="mt-6">
             <h2 className="text-xl font-semibold mb-2">Location</h2>
-            {property.mapEmbedUrl ? (
-              <iframe
-                src={property.mapEmbedUrl}
-                width="100%"
-                height="300"
-                style={{ border: 0 }}
-                allowFullScreen
-                loading="lazy"
-                className="rounded-xl"
-              />
-            ) : (
-              <div className="w-full h-64 bg-gray-200 flex items-center justify-center rounded-xl text-gray-600 text-sm">
-                Google Maps Placeholder
-              </div>
-            )}
+            <div className="w-full h-64 bg-gray-200 flex items-center justify-center rounded-xl text-gray-600 text-sm">
+              Google Maps Placeholder
+            </div>
           </section>
 
-          {/* reviews */}
           <section className="mt-8">
             <h2 className="text-xl font-semibold mb-4">Reviews</h2>
             <div className="space-y-4">
@@ -203,15 +177,13 @@ export default function PropertyDetail({ property }: { property: Property }) {
           </section>
         </div>
 
-        {/* ========= Sidebar ========= */}
         <aside className="p-6 border rounded-xl shadow-sm space-y-6 sticky top-24 h-fit">
           <div className="text-xl font-bold">
-            Rp. {property.price.toLocaleString('id-ID')}{' '}
+            Rp. {(property.price || 0).toLocaleString('id-ID')}{' '}
             <span className="text-sm text-gray-500">/night</span>
           </div>
 
           <div className="space-y-4">
-            {/* dates */}
             <div>
               <label htmlFor="checkin" className="block text-sm font-medium text-gray-700 mb-1">
                 Check-In
@@ -238,7 +210,6 @@ export default function PropertyDetail({ property }: { property: Property }) {
               />
             </div>
 
-            {/* guest picker */}
             <div className="relative" ref={dropdownRef}>
               <label className="block text-sm font-medium text-gray-700 mb-1">Who’s coming?</label>
               <button
@@ -288,7 +259,6 @@ export default function PropertyDetail({ property }: { property: Property }) {
                       </div>
                     </div>
                   ))}
-
                   {(totalGuests > 0 || totalPets > 0) && (
                     <button
                       onClick={handleResetGuests}

@@ -1,7 +1,7 @@
 'use client';
 import { useParams } from 'next/navigation';
 import { useAuthRole } from '@/app/utils/hook/useAuthRole';
-import EditRoomForm from '../EditRoomForm';
+import EditRoomForm from '@/components/form/EditRoomForm';
 
 export default function EditRoomPage() {
   const authorized = useAuthRole(['TENANT']);

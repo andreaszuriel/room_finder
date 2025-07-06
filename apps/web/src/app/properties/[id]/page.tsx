@@ -3,7 +3,7 @@
 import { useParams } from 'next/navigation';
 import { useEffect, useState } from 'react';
 import { getPropertyDetail } from '@/lib/api/axios';
-import PropertyDetail from '@/components/PropertyDetail';
+import PropertyDetail from '@/components/Property/DetailPage';
 import LoadingScreen from '@/components/LoadingScreen';
 interface Property {
   id: number;

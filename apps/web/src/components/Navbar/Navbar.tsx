@@ -13,36 +13,37 @@ import Swal from 'sweetalert2';
 export default function Navbar() {
   const [showProfileMenu, setShowProfileMenu] = useState(false);
   const { isAuthenticated, role, logout, isAuthLoaded } = useAuth();
-  const [userId, setUserId] = useState<number | null>(null);
   const [name, setName] = useState('');
   const [profileImg, setProfileImg] = useState('');
 
   useEffect(() => {
-    const role = localStorage.getItem('role');
-    if (role !== 'user') return;
-    if (!localStorage.getItem('token')) return;
+    if (typeof window === 'undefined') return;
+
+    const storedRole = localStorage.getItem('role');
+    const token = localStorage.getItem('token');
+
+    if (storedRole !== 'user' || !token) return;
+
     const fetchUserData = async () => {
       try {
         const profile = await getProfileUser();
         const data = profile.detail;
 
-        setUserId(data.id);
-        if (userId !== null) {
-          console.log('Current user ID:', userId);
-        }
         setName(data.name);
-        if (name !== null) {
-          console.log(name);
-        }
         setProfileImg(data.profilePhoto);
+        console.log('Current user ID:', data.id);
+        console.log('User name:', data.name);
       } catch (error: unknown) {
         const err = error as AxiosError<{ detail?: string }>;
         toast.error(err.response?.data?.detail || 'Terjadi kesalahan.');
       }
     };
+
     fetchUserData();
   }, []);
+
   if (!isAuthLoaded) return null;
+
   return (
     <header className="bg-white shadow-sm fixed top-0 z-50 w-full">
       <div className="w-full px-4 md:px-8 py-4 flex justify-between items-center relative">
@@ -60,7 +61,6 @@ export default function Navbar() {
 
         {/* Right Actions */}
         <div className="flex items-center space-x-4">
-          {/* ✅ Tampilkan hanya jika belum login atau bukan tenant */}
           {!isAuthenticated || role !== 'TENANT' ? (
             <Link
               href="/Register_Tenant"
@@ -70,7 +70,6 @@ export default function Navbar() {
             </Link>
           ) : null}
 
-          {/* ✅ User sudah login */}
           {isAuthenticated ? (
             <div className="relative">
               <button
@@ -95,6 +94,9 @@ export default function Navbar() {
 
               {showProfileMenu && (
                 <div className="absolute right-0 mt-2 w-48 bg-white border rounded-md shadow-lg z-50">
+                  <div className="px-4 py-2 text-sm text-gray-700 font-semibold">
+                    {name && `Hi, ${name}`}
+                  </div>
                   <Link
                     href="/Settings_User"
                     className="block px-4 py-2 text-sm hover:bg-gray-100"
@@ -136,7 +138,6 @@ export default function Navbar() {
               )}
             </div>
           ) : (
-            // ✅ Belum login
             <>
               <Link
                 href="/Login"

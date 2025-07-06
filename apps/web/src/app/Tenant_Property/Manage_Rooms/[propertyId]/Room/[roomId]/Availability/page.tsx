@@ -1,7 +1,7 @@
 'use client';
 
 import { useParams } from 'next/navigation';
-import RoomAvailabilityTable from '../AvailabilityTable';
+import RoomAvailabilityTable from '@/components/table/AvailabilityTable';
 import TenantSidebar from '@/components/Tenant_Navbar/page';
 import Link from 'next/link';
 import { useAuthRole } from '@/app/utils/hook/useAuthRole';

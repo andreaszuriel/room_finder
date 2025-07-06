@@ -6,7 +6,7 @@ import { useAuthRole } from '@/app/utils/hook/useAuthRole';
 import { useState, useEffect } from 'react';
 import { useParams } from 'next/navigation';
 import TenantSidebar from '@/components/Tenant_Navbar/page';
-import TenantRoomTable from '../RoomTable';
+import TenantRoomTable from '@/components/table/RoomTable';
 import { getRoomsByProperty } from '@/lib/api/axios';
 import { toast } from 'sonner';
 import { RoomType } from '@/types/property';

@@ -6,7 +6,7 @@ import { useAuthRole } from '@/app/utils/hook/useAuthRole';
 import { useState, useEffect } from 'react';
 import { useParams } from 'next/navigation';
 import TenantSidebar from '@/components/Tenant_Navbar/page';
-import PeakSeasonTable from '../PeakSeasonTable';
+import PeakSeasonTable from '@/components/table/PeakSeasonTable';
 import { getPeakSeasonsByRoomId } from '@/lib/api/axios';
 import { toast } from 'sonner';
 import { PeakSeasonType } from '@/types/property';

@@ -18,7 +18,7 @@ import Swal from 'sweetalert2';
 import { useAuth } from '../../app/utils/hook/useAuth';
 import { useAuthRole } from '../../app/utils/hook/useAuthRole';
 import Image from 'next/image';
-import { useProfile } from '@/app/context/ProfileContext';
+import { useProfile } from '@/context/ProfileContext';
 
 const navItems = [
   { name: 'Dashboard', href: '/', icon: Home },

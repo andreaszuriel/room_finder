@@ -1,8 +1,8 @@
 'use client';
 
-import SalesFilter from './components/SalesFilter';
-import SalesTable from './components/SalesTable';
-import RevenueSummary from './components/RevenueSummary';
+import SalesFilter from '@/components/reports/SalesFilter';
+import SalesTable from '@/components/reports/SalesTable';
+import RevenueSummary from '@/components/reports/RevenueSummary';
 import { useState, useMemo, useEffect } from 'react';
 import { getMonthlyIncomeReport } from '@/lib/api/axios';
 import TenantSidebar from '@/components/Tenant_Navbar/page';
