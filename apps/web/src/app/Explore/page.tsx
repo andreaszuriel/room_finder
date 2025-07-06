@@ -5,7 +5,7 @@ import { useState, useEffect } from 'react';
 import { getCatalogProperties, getAllCities } from '@/lib/api/axios';
 import { toast } from 'sonner';
 import Image from 'next/image';
-import Navbar from '@/components/navbar';
+import Navbar from '@/components/Navbar';
 import SearchFormExplore from '@/components/SearchFormExplore';
 import LoadingScreen from '@/components/LoadingScreen';
 
