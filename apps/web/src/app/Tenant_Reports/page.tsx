@@ -5,7 +5,7 @@ import SalesTable from './components/SalesTable';
 import RevenueSummary from './components/RevenueSummary';
 import { useState, useMemo, useEffect } from 'react';
 import { getMonthlyIncomeReport } from '@/lib/api/axios';
-import TenantSidebar from '../Tenant_Navbar/page';
+import TenantSidebar from '../../components/Tenant_Navbar/page';
 import { Range } from 'react-date-range';
 
 export interface Booking {

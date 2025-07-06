@@ -5,7 +5,7 @@ import Link from 'next/link';
 import { useAuthRole } from '@/app/utils/hook/useAuthRole';
 import { useState, useEffect } from 'react';
 import { useParams } from 'next/navigation';
-import TenantSidebar from '@/app/Tenant_Navbar/page';
+import TenantSidebar from '../../../../components/Tenant_Navbar/page';
 import TenantRoomTable from '../RoomTable';
 import { getRoomsByProperty } from '@/lib/api/axios';
 import { toast } from 'sonner';

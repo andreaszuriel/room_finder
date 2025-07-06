@@ -5,7 +5,7 @@ import { useRouter } from 'next/navigation';
 import { updateRoom, getRoomById } from '@/lib/api/axios';
 import { toast } from 'sonner';
 import { AxiosError } from 'axios';
-import TenantSidebar from '@/app/Tenant_Navbar/page';
+import TenantSidebar from '../../../../../../components/Tenant_Navbar/page';
 
 export default function EditRoomPage({
   propertyId,

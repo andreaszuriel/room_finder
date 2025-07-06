@@ -1,7 +1,7 @@
 'use client';
 
 import Link from 'next/link';
-import { useAuth } from '../utils/hook/useAuth';
+import { useAuth } from '@/app/utils/hook/useAuth';
 import Swal from 'sweetalert2';
 import { usePathname } from 'next/navigation';
 import {

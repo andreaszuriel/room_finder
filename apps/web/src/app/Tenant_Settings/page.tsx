@@ -9,7 +9,7 @@ import {
 import { useAuthRole } from '../utils/hook/useAuthRole';
 import { FaEye, FaEyeSlash } from 'react-icons/fa';
 import { toast } from 'sonner';
-import TenantSidebar from '../Tenant_Navbar/page';
+import TenantSidebar from '../../components/Tenant_Navbar/page';
 import { AxiosError } from 'axios';
 
 export default function TenantSettingsPage() {

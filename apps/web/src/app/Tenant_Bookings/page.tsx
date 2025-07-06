@@ -11,7 +11,7 @@ import { Booking } from '@/types/booking';
 import { AxiosError } from 'axios';
 import { BookingStatus } from '@/types/property';
 import { useAuthRole } from '../utils/hook/useAuthRole';
-import TenantSidebar from '../Tenant_Navbar/page';
+import TenantSidebar from '../../components/Tenant_Navbar/page';
 import { User, Calendar, Check, X, Eye } from 'lucide-react';
 import Swal from 'sweetalert2';
 

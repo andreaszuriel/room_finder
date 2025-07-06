@@ -2,7 +2,7 @@
 
 import { useState } from 'react';
 import { useRouter, useSearchParams } from 'next/navigation';
-import SideNavbar from '@/app/Tenant_Navbar/page';
+import TenantSidebar from '../../../components/Tenant_Navbar/page';
 
 export default function TenantAddRoomPage() {
   const router = useRouter();
@@ -56,7 +56,7 @@ export default function TenantAddRoomPage() {
 
   return (
     <div className="flex min-h-screen bg-gray-50">
-      <SideNavbar />
+      <TenantSidebar />
       <main className="flex-1 px-8 py-10">
         <div className="max-w-2xl mx-auto bg-white p-8 rounded-lg shadow">
           <h2 className="text-2xl font-bold mb-6">Add Room to Property #{propertyId}</h2>
